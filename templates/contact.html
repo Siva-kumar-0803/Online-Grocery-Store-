@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %} Contact Us {% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="container mt-5">
+    <!-- Contact Header Image -->
+    <div class="contact-header mt-4">
+        <img src="../static/bg image/OIP (9).jpeg" class="img-fluid" alt="Contact Us">
+    </div>
+
+    <!-- Contact Information Section -->
+    <div class="contact-info mt-5 text-center">
+        <h2>Contact Us</h2>
+        <div class="mt-4">
+            <p> <img src="https://img.icons8.com/?size=100&id=P7UIlhbpWzZm&format=png&color=000000" height="40" width="40"><i class="bi bi-envelope"></i> abcd123@gmail.com</p>
+            <p><i class="bi bi-telephone"></i> Store Telephone: 14000-23423-43567</p>
+            <p><i class="bi bi-whatsapp"></i> WhatsApp: +91 98765-43210</p>
+        </div>
+        <div class="contact-icons mt-4">
+            <img src="https://img.icons8.com/?size=100&id=32323&format=png&color=000000"  height="40" width="40" class="mx-3"><i class="bi bi-instagram"></i> Instagram
+            <img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000"  height="40" width="40" class="mx-3"><i class="bi bi-facebook"></i> Facebook</a>
+            <img src="https://img.icons8.com/?size=100&id=13963&format=png&color=000000"  height="40" width="40" class="mx-3"><i class="bi bi-twitter"></i> Twitter</a>
+        </div>
+    </div>
+
+    <!-- Feedback Section -->
+    <div class="feedback-section mt-5">
+        <h3 class="text-center">We value your feedback</h3>
+        <form class="mt-4">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="feedback" class="form-label">Feedback</label>
+                <textarea id="feedback" class="form-control" rows="4" placeholder="Enter your feedback here..." required></textarea>
+            </div>
+            <div class="text-center mb-3">
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% include "footer.html" %}
+{% endblock %}

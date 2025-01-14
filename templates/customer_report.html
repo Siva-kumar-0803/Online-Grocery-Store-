@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} Customer Report {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Customer Report</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in customer_report %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Download Button for Customer Report -->
+    <form action="{{ url_for('download_customer_report') }}" method="POST">
+        <button type="submit" class="btn btn-success">Download Customer Report (CSV)</button>
+    </form>
+</div>
+{% endblock %}

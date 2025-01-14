@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{%block title %} Single Products {% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="address-container">
+    <h5>Manage Addresses</h5>
+    {% if address_list %}
+    <!-- Existing Addresses Section -->
+     <form action="{{ url_for('payment') }}" method="post">
+    {% for address in address_list %}
+    <div class="existing-address">
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="address" value="{{ address.address }}" required>
+            <span>{{ address.address }}</span>
+        </label>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Save & Continue</button>
+</form>
+{% endif %}
+    <!-- Button to Add New Address -->
+    <button class="btn btn-outline-secondary new-address-btn" data-bs-toggle="collapse" data-bs-target="#newAddressForm">
+        + Add New Address
+    </button>
+
+    <!-- New Address Form -->
+    <div id="newAddressForm" class="collapse">
+        <form action="{{ url_for('save_address', var=gtp) }}" method="post">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="Name" name="name" 
+       pattern="^[A-Za-z]+(?:\s[A-Za-z]+)*$" 
+       title="Only letters and spaces are allowed" required>
+
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <input type="email" class="form-control" placeholder="Email" name="email" required>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <input type="number" name="mobile" class="form-control" placeholder="Mobile" 
+                    pattern="\d{10}" min="1000000000" max="9999999999"
+                    title="Enter a valid 10-digit mobile number" 
+                    maxlength="10" 
+                    required>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <input type="number" name="pincode" class="form-control" placeholder="Pincode" 
+                    pattern="\d{6}"  min="100000" max="999999"
+                    title="Enter a valid 6-digit pincode" 
+                    maxlength="6" 
+                    required>
+                </div>
+                
+                <div class="col-12 mb-3">
+                    <input type="text" class="form-control" placeholder="Address" name="address" required>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="Landmark" name="landmark" required>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="District" name="district" required>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="State" name="state" 
+       pattern="^[A-Za-z]+(?:\s[A-Za-z]+)*$" 
+       title="Only letters and spaces are allowed" required>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Save & Continue</button>
+        </form>
+        
+    </div>
+</div>
+
+
+{% endblock %}  

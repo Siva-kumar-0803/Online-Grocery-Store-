@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %} Products {% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 bg-light border-right">
+            
+            <!-- Sidebar with categories -->
+            <a href="{{ url_for('product', var=1) }}" class="list-group-item list-group-item-action custome-text py-2 custom-border p-4">Fruits and Vegetables</a>
+            <a href="{{ url_for('product', var=2) }}" class="list-group-item list-group-item-action custome-text py-2 custom-border p-4">Bakery, Cakes, and Dairy</a>
+            <a href="{{ url_for('product', var=3) }}" class="list-group-item list-group-item-action custome-text py-2 custom-border p-4">Meat and Seafood</a>
+            <a href="{{ url_for('product', var=4) }}" class="list-group-item list-group-item-action custome-text py-2 custom-border p-4">Groceries</a>
+            <a href="{{ url_for('product', var=5) }}" class="list-group-item list-group-item-action custome-text py-2 custom-border p-4">Branded Food</a>
+            <a href="{{ url_for('product', var=6) }}" class="list-group-item list-group-item-action custome-text py-2 custom-border p-4">Beauty and Hygiene</a>
+            <a href="{{ url_for('product', var=7) }}" class="list-group-item list-group-item-action custome-text py-2 custom-border p-4">Household Items</a>
+            <a href="{{ url_for('product', var=8) }}" class="list-group-item list-group-item-action custome-text py-2 custom-border p-4">Baby Care</a>
+            <a href="{{ url_for('product', var=9) }}" class="list-group-item list-group-item-action custome-text py-2 custom-border p-4">Beverages</a>
+        </div>
+        <!-- Product Cards -->
+        <div class="col-10">
+            <div class="row">
+                {% for product in products %}
+                <div class="col-3 mb-4">
+                    <div class="card h-100">
+                        <!-- Product Image -->
+                        <a href="{{ url_for('single_product', single_products=product.id) }}"><img src="{{ product.image }}" height="190" class="card-img-top" alt="{{ product.name }}"></a>
+
+                        <!-- Product Body -->
+                        <div class="card-body text-left">
+                            <p class="card-title">{{product.brand}}, {{ product.name }}, {{product.weight}}</p>
+                            <div class="d-flex justify-content-between align-items-left">
+                                <!-- Price Section -->
+                                <div class="price-section">
+                                    <p class="mb-0 fs-4"><b>₹{{product.price}}</b> <s>₹{{product.actual_price}}</s></p>
+                                </div>
+                                <!-- Rating Section (optional placeholder) -->
+                                <div class="rating-section" style="font-size: 14px;">
+                                    {{product.ratings}}★
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add to Cart Button -->
+                        <a href="{{ url_for('add_to_cart', product_id=product.id, price=product.price,name=product.name,image=product.image)}}" 
+                        class="btn btn-orange fw-bold fs-5 custom-button">
+                         Add Cart
+                     </a>
+                                         </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include "footer.html" %}
+{% endblock %}

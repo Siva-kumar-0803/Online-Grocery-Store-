@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{%block title %} Home {% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<div id="carouselExampleIndicators" class="carousel slide mt-1">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://www.bigbasket.com/media/uploads/banner_images/ibbn-sb101713837-27146_hp_c&h_c_detergent-&-cleaning_01112024_all.jpg" height="400" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item active">
+        <img src="https://www.bigbasket.com/media/uploads/banner_images/BB1967-1200X300-9.jpg" height="400" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://c8.alamy.com/comp/2JBGF84/realistic-banana-poster-fruit-juice-advertising-banner-glass-bottle-with-sweet-drink-brand-text-tasty-tropical-beverage-whole-and-cut-raw-food-2JBGF84.jpg"  height="400" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.bigbasket.com/media/uploads/banner_images/L2-YXPL154-1200x300-25thmar.jpg"  height="400" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="row mx-5 mt-5" >
+    {% for category in categories %}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 custom-col mb-4">     
+        <div class="card h-100">
+            <a href="{{ url_for('product', var=category.id) }}"> 
+                <img src="{{ category.image }}" height="190" class="card-img-top" alt="{{ category.name }}">
+            </a>
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ category.name }}</h5>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+<h2 class="mx-5 mt-4 p-3 fw-bolder ">Top Brands</h2>
+            <div class="row mx-5">
+                {% for brand in brands %}
+                <!-- Card 1 -->
+                <div class="col custom-col mb-4">
+                    <div class="card h-100">
+                      <a href="{{ url_for('top_brand', var=brand.brand_name) }}">
+                        <img src="{{brand.brand_image}}" height="190" class="card-img-top" alt="Image 1">
+                      </a>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{brand.brand_name}}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+<h2 class="mx-5 mt-4 p-3 fw-bolder">Offers</h2> 
+            <div class="row mx-5">
+                {% for offer in offers %}
+                <!-- Card 1 -->
+                <div class="col custom-col mb-4">     
+                    <div class="card h-100">
+                      <a href="{{ url_for('offer', var=offer.offer_id) }}">
+                        <img src="{{ offer.offer_image }}" height="190" class="card-img-top" alt="{{ offer.name }}">
+                      </a>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{offer.offer_name}}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor%}
+                </div>
+                
+
+                
+            {% include "footer.html" %}
+                <!-- More cards can be added here -->
+   {% endblock %}             
+
+
+
+
+
+
+

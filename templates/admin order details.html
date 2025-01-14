@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{%block title %} Home {% endblock %}
+{% block content %}
+<body class="orderdetail">
+<div class="details-container">
+    <!-- Order Details Section -->
+    <div class="details-header">
+        <h5>Order Details</h5>
+        <div class="order-status">
+            <span>Status :</span>
+            <span>Processing</span>
+        </div>
+    </div>
+
+    <table class="table table-borderless details-table">
+        <tbody>
+            <tr>
+                <td class="text-left">Order Id</td>
+                <td class="text-right">1001</td>
+            </tr>
+            <tr>
+                <td class="text-left">Customer Id</td>
+                <td class="text-right">1001</td>
+            </tr>
+            <tr>
+                <td class="text-left">Customer Name</td>
+                <td class="text-right">John Doe</td>
+            </tr>
+            <tr>
+                <td class="text-left">Order Date</td>
+                <td class="text-right">2024-08-18</td>
+            </tr>
+            <tr>
+                <td class="text-left">Product Detail</td>
+                <td class="text-right">
+                    <table class="table product-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Milk</td>
+                                <td>1</td>
+                                <td>50</td>
+                                <td>50</td>
+                            </tr>
+                            <tr>
+                                <td>Meat</td>
+                                <td>1 kg</td>
+                                <td>500</td>
+                                <td>500</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Payment Details Section -->
+    <div class="details-header">
+        <h5>Payment Details</h5>
+    </div>
+
+    <table class="table table-borderless details-table">
+        <tbody>
+            <tr>
+                <td class="text-left">Subtotal</td>
+                <td class="text-right">$ 550</td>
+            </tr>
+            <tr>
+                <td class="text-left">Tax</td>
+                <td class="text-right">10%</td>
+            </tr>
+            <tr>
+                <td class="text-left">Discount</td>
+                <td class="text-right">5%</td>
+            </tr>
+            <tr>
+                <td class="text-left">Delivery Charge</td>
+                <td class="text-right">$ 50</td>
+            </tr>
+            <tr class="total-row">
+                <td class="text-left">Total</td>
+                <td class="text-right">$ 600</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

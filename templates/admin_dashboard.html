@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% block title %} Admin Dashboard {% endblock %}
+{% block content %}
+
+<div class="sidebar">
+    <h4 class="text-center">Admin Dashboard</h4>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#product_management">Product Management</a>
+    <a href="#order_management">Order Management</a>
+    <a href="#customer_management">Customer Management</a>
+    <a href="#report">Report</a>
+    <a href="{{url_for('admin_logout')}}">Logout</a>
+</div>
+
+<div class="content">
+    <div class="header">
+        <h5>Welcome, Admin</h5>
+    </div>
+
+    <!-- Dashboard Overview -->
+    <div class="card" id="dashboard">
+        <div class="card-header">Dashboard Overview</div>
+        <div class="card-body">
+            <table class="table metric-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Total Sales</td>
+                        <td>₹{{dashboard_item.total_sales}}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Orders</td>
+                        <td>{{dashboard_item.total_orders}}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Products</td>
+                        <td>{{total_products}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Product Management Section -->
+    <div class="card" id="product_management">
+        <div class="card-header">Product Management</div>
+        <div class="card-body">
+            <form action="{{url_for('add_product_page')}}" method="post">
+            <button class="btn btn-primary mb-3" >Add New Product</button></form>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ product.product_id }}</td>
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.brand_name }}</td>
+                        <td>₹{{ product.price }}</td>
+                        <td>{{ product.stock_keep_unit }}</td>
+                        <td>
+                            <a href="{{ url_for('edit_product', id=product.product_id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="{{ url_for('delete_product', id=product.product_id) }}" class="btn btn-sm btn-danger">Delete</a>                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- <a href="{{ url_for('all_products') }}" class="btn btn-secondary">Show All Products</a> -->
+        </div>
+    </div>
+
+    <!-- Order Management Section -->
+    <div class="card" id="order_management">
+        <div class="card-header">Order Management</div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Order Date</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.order_id }}</td>
+                        <td>{{ order.customer_name }}</td>
+                        <td>{{ order.order_date }}</td>
+                        <td>₹{{ order.total }}</td>
+                        <td>{{ order.status }}</td>
+                        <!-- {{ url_for('order_details', order_id=order.order_id) }} -->
+                        <td> <a href="#" class="btn btn-sm btn-info">view</a>                                                 
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- <a href="{{ url_for('all_orders') }}" class="btn btn-secondary">Show All Orders</a> -->
+        </div>
+    </div>
+
+    <!-- Customer Management Section -->
+    <div class="card" id="customer_management">
+        <div class="card-header">Customer Management</div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Email</th>
+                        <!-- <th>Total Orders</th>
+                        <th>Total Spend</th> -->
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.customer_id }}</td>
+                        <td>{{ customer.customer_name }}</td>
+                        <td>{{ customer.email }}</td>
+                        <!-- <td>{{ customer.total_orders }}</td>
+                        <td>₹{{ customer.total_spend }}</td> -->
+                        <td>
+                            <a href="{{ url_for('delete_customer', customer_id=customer.customer_id) }}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                                            </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- <a href="{{ url_for('all_customers') }}" class="btn btn-secondary">Show All Customers</a> -->
+        </div>
+    </div>
+
+    <!-- Reports Section -->
+<div class="card" id="report">
+    <div class="card-header">Report</div>
+    <div class="card-body">
+        <form action="{{ url_for('generate_report') }}" method="POST">
+            <button type="submit" name="report_type" value="sales" class="btn btn-primary">Generate Sales Report</button>
+            <button type="submit" name="report_type" value="customer" class="btn btn-primary">Generate Customer Report</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
