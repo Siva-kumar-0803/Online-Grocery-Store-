@@ -769,6 +769,10 @@ def logout():
     session.clear()
     return redirect('/login')  # Redirect to the login page
 
+@app.route('/')
+def index():
+    return render_template('home.html')
+
 @app.route('/home')
 def home():
     category_list = category()
