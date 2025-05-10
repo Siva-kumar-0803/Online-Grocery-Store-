@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Sign Up {% endblock %}
+    {% block content %}
+        <div class="container border border-secondry mt-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 text-center bg py-5 md-6">
+                    <h2 class="fw-bold mt-5 pt-5">Welcome Back!</h2>
+                    <p class=>To keep connected with us please login with personal info</p>
+                    <button class="signin" type="button"><a href="{{url_for('login')}}">Sign In</a></button>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6  col-lg-6 text-center md-6">
+                    <h2 class="fw-bold mt-5 pt-4">Create Account</h2>
+                    <div class="py-2">
+                        <a href="#"><img src="/static/images/icons8-facebook-logo-48.png"></a>
+                        <a href="#"><img src="/static/images/icons8-google-logo-48.png"></a>
+                    </div>
+                    <span>or use your email registration</span>
+                    <form class="input_fields py-3" action="{{url_for('signup')}}" method="post">  
+                        
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                
+                                    {% for category, message in messages %}
+                                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                                    {% endfor %}
+                                
+                            {% endif %}
+                        {% endwith %}
+                        
+                        <div class="py-2">
+                            <input type="text" placeholder="User Name" name="username" id="username" required>
+                        </div>
+                        <div class="py-2">
+                            <input type="email" placeholder="Email" name="email" id="email"  required>
+                        </div>
+                        <div class="py-2">
+                            <input type="password" placeholder="Password" name="password" id="password" required>
+                        </div>  
+                        <button class="py-2 fw-bold" type="submit" id="signup">Sign Up</button>    
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endblock %}

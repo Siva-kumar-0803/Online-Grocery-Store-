@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %} Confirm Order {% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="payment-container">
+    <h5>Payment Method</h5>
+    <form action="{{ url_for('order_confirmation') }}" method="POST">
+        <!-- <div class="form-check payment-option">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="upiPayment" onclick="showSubOptions('upiOptions')" required>
+            <label class="form-check-label" for="upiPayment">UPI Payment</label>
+            <div class="sub-options ms-4" id="upiOptions" style="display:none;">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="upiOption" id="phonepe" value="PhonePe" required>
+                    <label class="form-check-label" for="phonepe">PhonePe</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="upiOption" id="googlePay" value="Google Pay" required>
+                    <label class="form-check-label" for="googlePay">Google Pay</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-check payment-option">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="creditDebit" onclick="showSubOptions('cardDetails')" required>
+            <label class="form-check-label" for="creditDebit">Credit / Debit Card</label>
+            <div class="card-details sub-options ms-4" id="cardDetails" style="display:none;">
+                <input type="text" class="form-control mb-2" placeholder="Card Number" name="cardNumber" pattern="\d{16}" title="Enter a valid 16-digit card number" required>
+                <div class="row">
+                    <div class="col-4">
+                        <select class="form-select" name="expiryMonth" required>
+                            <option value="">MM</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-select" name="expiryYear" required>
+                            <option value="">YY</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" class="form-control" placeholder="CVV" name="cvv" pattern="\d{3}" title="Enter a valid 3-digit CVV" required>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Cash On Delivery Section -->
+        <div class="form-check payment-option">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" onclick="showSubOptions('codDetails')" required>
+            <label class="form-check-label" for="cashOnDelivery">Cash On Delivery</label>
+            <div class="captcha-section sub-options ms-4" id="codDetails" style="display:none;">
+                <label>{{ captcha }}</label>
+                <input type="text" class="form-control my-3" placeholder="Enter Captcha" name="captchas" required>
+            </div>
+        </div>
+
+        <!-- Hidden Inputs for Address and CAPTCHA -->
+        <input type="hidden" name="address" value="{{ address }}">
+        <input type="hidden" name="captcha" value="{{ captcha }}">
+
+        <!-- Confirm Order Button -->
+        <button type="submit" class="btn custom-order-btn fw-bold mt-3">Confirm Order</button>
+    </form>
+</div>
+
+{% endblock %}
+
+<!-- JavaScript Section -->
+{% block scripts %}
+<script>
+    function showSubOptions(optionId) {
+        // Hide all sub-options
+        const subOptions = document.querySelectorAll('.sub-options');
+        subOptions.forEach(option => option.style.display = 'none');
+
+        // Show the selected sub-option
+        const selectedOption = document.getElementById(optionId);
+        if (selectedOption) {
+            selectedOption.style.display = 'block';
+        }
+    }
+</script>
+{% endblock %}

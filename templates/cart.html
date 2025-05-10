@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Single Products{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="cart-container">
+    <!-- Shopping Cart Section -->
+    <div class="cart-items">
+        <h5 class="fw-bold mb-3">Shopping Cart</h5>
+        <form method="POST" action="{{ url_for('cart') }}">
+            {% for item in cart_items %}
+            <div class="cart-item d-flex align-items-center" data-product-id="{{ item['product_id'] }}">
+                <img src="{{ item['image_url'] }}" alt="Product Image" class="img-thumbnail" style="width: 100px; height: 100px;">
+                <div class="flex-grow-1 mx-3">
+                    <h6>{{ item['product_name'] }}</h6>
+                </div>
+                <div class="quantity-control d-flex align-items-center">
+                    <input type="hidden" name="product_id" value="{{ item['product_id'] }}">
+                    <button type="submit" class="btn btn-outline-secondary btn-sm" name="action" value="decrease-{{ item['product_id'] }}">-</button>
+                    <span class="mx-2">{{ item['quantity'] }}</span>
+                    <button type="submit" class="btn btn-outline-secondary btn-sm" name="action" value="increase-{{ item['product_id'] }}">+</button>
+                </div>
+                <button type="submit" class="btn delete-btn mx-4 bg-danger text-white" name="action" value="delete-{{ item['product_id'] }}">Delete</button>
+                <span class="price mx-3" style="color: black;">₹{{ item['price'] }}</span>
+            </div>
+            {% endfor %}
+        </form>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="cart-summary mt-4">
+        <h5 class="fw-bold mb-3">Summary</h5>
+        <ul>
+            <li class="d-flex justify-content-between">
+                <span class="item-count">{{ total_items }} Items</span>
+                <span class="subtotal">₹ {{ subtotal }}</span>
+            </li>
+            <li class="d-flex justify-content-between">
+                <span>Delivery Charge</span>
+                <span class="delivery-charge">₹ {{ delivery_charge }}</span>
+            </li>
+            <li class="d-flex justify-content-between fw-bold">
+                <span>Total</span>
+                <span class="total-price">₹{{ total }}</span>
+            </li>
+        </ul>
+        <a href="{{ url_for('add_address', var=total)}}" class="btn btn-success w-100">Checkout</a>
+    </div>
+</div>
+{% endblock %}

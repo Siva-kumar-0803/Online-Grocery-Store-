@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %} Order Details {% endblock %}
+
+{% block content %}
+<body class="orderdetail">
+<div class="details-container">
+    <!-- Order Details Section -->
+    <div class="details-header">
+        <h5>Order Details</h5>
+        <div class="order-status">
+            <span>Status :</span>
+            <span>{{ order_status }}</span>  <!-- Dynamically rendered order status -->
+        </div>
+    </div>
+
+    <!-- Order Summary Table -->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Order Date</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ order_id }}</td>  <!-- Dynamic Order ID -->
+                <td>{{ customer_name }}</td>  <!-- Dynamic Customer Name -->
+                <td>{{ order_date }}</td>  <!-- Dynamic Order Date -->
+                <td>₹{{ total_amount }}</td>  <!-- Dynamic Total Amount -->
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Product Details Section -->
+    <div class="details-header">
+        <h5>Product Details</h5>
+    </div>
+
+    <!-- Product Details Table -->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product[0] }}</td>  <!-- Dynamic Product Name -->
+                <td>{{ product[1] }}</td>  <!-- Dynamic Quantity -->
+                <td>₹{{ product[2] }}</td>  <!-- Dynamic Price -->
+                <td>₹{{ product[3] }}</td>  <!-- Dynamic Total (Quantity * Price) -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+{% endblock %}
