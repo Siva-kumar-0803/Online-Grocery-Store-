@@ -18,10 +18,10 @@ app.config['SESSION_PERMANENT'] = False
 bcrypt = Bcrypt(app)
 
 # MySQL configuration
-app.config['MYSQL_HOST'] = '127.0.0.1'
+app.config['MYSQL_HOST'] = 'yamabiko.proxy.rlwy.ne'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Pabithashree123'
-app.config['MYSQL_DB'] = 'grocery_store'
+app.config['MYSQL_PASSWORD'] = 'JVcJbYlGWaoNKQiKEuBMkTyECfOoAhPE'
+app.config['MYSQL_DB'] = '56349'
 
 mysql = MySQL(app)
 
