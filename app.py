@@ -11,6 +11,9 @@ from io import StringIO
 from flask import Response
 import re
 import datetime
+from dotenv import load_dotenv
+import os
+
 app = Flask(__name__,static_folder='static')
 app.secret_key='grocery_store'
 app.config['SESSION_PERMANENT'] = False
@@ -18,10 +21,13 @@ app.config['SESSION_PERMANENT'] = False
 bcrypt = Bcrypt(app)
 
 # MySQL configuration
-app.config['MYSQL_HOST'] = 'yamabiko.proxy.rlwy.ne'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'JVcJbYlGWaoNKQiKEuBMkTyECfOoAhPE'
-app.config['MYSQL_DB'] = '56349'
+
+app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
+app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
+app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
+app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
+app.config['MYSQL_PORT'] = int(os.getenv('MYSQL_PORT'))  # port should be integer
+
 
 mysql = MySQL(app)
 
