@@ -756,7 +756,7 @@ def login():
             session['customer_id'] = fetching_email_password[1]
             hashed_password = fetching_email_password[0]
             if bcrypt.check_password_hash(hashed_password, password):
-                return redirect('/home')  # Redirect to the home page on successful login
+                return redirect('/')  # Redirect to the home page on successful login
             else:
                 return "Incorrect password"
         else:
@@ -769,11 +769,8 @@ def logout():
     session.clear()
     return redirect('/login')  # Redirect to the login page
 
-@app.route('/')
-def index():
-    return render_template('home.html')
 
-@app.route('/home')
+@app.route('/')
 def home():
     category_list = category()
     offers_list = offers()
