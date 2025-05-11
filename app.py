@@ -1,4 +1,12 @@
 from flask import Flask,render_template,redirect,request,send_file,flash,url_for,session,jsonify
+import pymysql
+pymysql.install_as_MySQLdb()
+
+from flask import Flask
+from flask_mysqldb import MySQL
+from dotenv import load_dotenv
+import os
+
 from flask_mysqldb import MySQL
 from flask_bcrypt import Bcrypt
 from datetime import datetime
