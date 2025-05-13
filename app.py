@@ -34,7 +34,9 @@ app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
 app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
-app.config['MYSQL_PORT'] = os.getenv('MYSQL_PORT') # port should be integer
+mysql_port = os.getenv('MYSQL_PORT', 3306)  # Default port is 3306 if not set
+app.config['MYSQL_PORT'] = int(mysql_port)
+
 
 
 mysql = MySQL(app)
@@ -200,7 +202,7 @@ def delete_address(address_id):
 def send_otp(receiver_mail):
     otp = ''.join(random.choices('0123456789', k=4))  # Generate a 4-digit OTP
     sender_mail = "makemoney9047@gmail.com"
-    sender_mail_pass = "rzbixshpspcvqqar"
+    sender_mail_pass = "tskhhenrqqxjxzce"
     # creates SMTP session
     s = smtplib.SMTP('smtp.gmail.com', 587)
     # start TLS for security
