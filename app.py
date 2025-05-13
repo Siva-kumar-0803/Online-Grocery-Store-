@@ -1086,15 +1086,15 @@ def admin_dashboard():
 
 @app.route('/add_product', methods=['POST'])
 def add_product():
-    name = request.form['name']
-    brand = request.form['brand']
+    name = request.form['product_name']
+    brand = request.form['brand_name']
     price = request.form['price']
     actual_price = request.form['actual_price']
     weight_quantity = request.form['weight_quantity']
     ratings = request.form['ratings']
     description = request.form['description']
     image_url = request.form['image_url']
-    stock = request.form['stock']
+    stock = request.form['stock_keep_unit']
     availability = request.form['availability']
     country = request.form['country']
     category_id = request.form['category_id']
