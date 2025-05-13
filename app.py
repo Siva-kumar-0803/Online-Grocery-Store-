@@ -27,7 +27,7 @@ app.secret_key='grocery_store'
 app.config['SESSION_PERMANENT'] = False
 
 bcrypt = Bcrypt(app)
-
+load_dotenv()
 # MySQL configuration
 
 app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
@@ -37,8 +37,11 @@ app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 mysql_port = os.getenv('MYSQL_PORT', 3306)  # Default port is 3306 if not set
 app.config['MYSQL_PORT'] = int(mysql_port)
 
-
-
+print("app.config['MYSQL_HOST']" ,os.getenv('MYSQL_HOST'))
+print("app.config['MYSQL_USER']" ,os.getenv('MYSQL_USER'))
+print("app.config['MYSQL_PASSWORD']",os.getenv('MYSQL_PASSWORD'))
+print("app.config['MYSQL_DB']" ,os.getenv('MYSQL_DB'))
+print("app.config['MYSQL_PORT']" , int(mysql_port))
 mysql = MySQL(app)
 
 ADMIN_EMAIL = "admin@gmail.com"
